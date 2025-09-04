@@ -2,7 +2,8 @@ from data import AccountData
 from operation import AccountManager, OperationFactory
 
 def main():
-    manager = AccountManager()
+    account = AccountData(1000)
+    manager = AccountManager(account)
 
     while True:
         print("--------------------------------")

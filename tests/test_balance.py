@@ -1,4 +1,6 @@
 import pexpect
+from data import AccountData
+from operation import AccountManager, OperationFactory
     
 def test_application_balance():
     child = pexpect.spawn("python src/main.py")
@@ -11,3 +13,14 @@ def test_application_balance():
     
     child.close()
     
+def test_application_balance_full():
+    account = AccountData(1000)
+    accountManager = AccountManager(account)
+    child = pexpect.spawn("python src/main.py")
+
+    op = OperationFactory.get_operation('BALANCE')
+    accountManager.perform_operation(op)
+    
+    child.expect("Amount debited. New balance: 1000.00")
+
+    child.close()

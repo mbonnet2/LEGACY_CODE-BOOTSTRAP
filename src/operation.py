@@ -35,8 +35,8 @@ class DebitOperation(Operation):
             print(f"Invalid operation type")
 
 class AccountManager:
-    def __init__(self):
-        self.account = AccountData(1000)
+    def __init__(self, account: AccountData):
+        self.account = account
 
     def perform_operation(self, operation: Operation) -> None:
         operation.execute(self.account)
