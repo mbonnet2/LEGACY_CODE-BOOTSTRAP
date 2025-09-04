@@ -10,7 +10,7 @@ def test_application_debit_add():
     op = OperationFactory.get_operation('DEBIT', 100)
     accountManager.perform_operation(op)
     
-    child.expect("Amount debited. New balance: 900")
+    child.expect("Amount debited. New balance: 900", timeout=5)
 
     child.close()
 
@@ -23,7 +23,7 @@ def test_application_debit_negative():
     op = OperationFactory.get_operation('DEBIT', -100)
     accountManager.perform_operation(op)
 
-    child.expect("Invalid operation")
+    child.expect("Invalid operation", timeout=5)
 
     child.close()
 
@@ -35,7 +35,7 @@ def test_application_debit_nul():
     op = OperationFactory.get_operation('DEBIT', 0)
     accountManager.perform_operation(op)
 
-    child.expect("Invalid operation")
+    child.expect("Invalid operation", timeout=5)
 
     child.close()
 
@@ -43,14 +43,14 @@ def test_application_debit_full():
 
     child = pexpect.spawn("python src/main.py")
     
-    child.expect("Account Management System")
+    child.expect("Account Management System", timeout=5)
     
     child.sendline("2")
     
-    child.expect("Enter debit amount:")
+    child.expect("Enter debit amount:", timeout=5)
 
     child.sendline("100")
 
-    child.expect("Amount debited. New balance: 900")
+    child.expect("Amount debited. New balance: 900", timeout=5)
 
     child.close()
