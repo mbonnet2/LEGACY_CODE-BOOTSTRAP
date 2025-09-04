@@ -8,7 +8,7 @@ def test_application_exit():
     
     child.sendline("4")
     
-    child.expect("exit")
+    child.expect("Exiting the program. Goodbye!")
     
     child.expect(pexpect.EOF)
     child.close()

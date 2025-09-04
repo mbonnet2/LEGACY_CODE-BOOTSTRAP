@@ -1,6 +1,6 @@
 import pexpect
-from data import AccountData
-from operation import AccountManager, OperationFactory
+from src.data import AccountData
+from src.operation import AccountManager, OperationFactory
     
 def test_application_debit_add():
     account = AccountData(1000)
