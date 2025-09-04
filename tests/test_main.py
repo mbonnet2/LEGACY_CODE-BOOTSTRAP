@@ -55,6 +55,7 @@ def test_application_exit():
     
     child.expect("exit")
     
+    child.expect(pexpect.EOF)
     child.close()
     
     assert child.exitstatus == 0
