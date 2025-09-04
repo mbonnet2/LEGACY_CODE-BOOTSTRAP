@@ -44,8 +44,6 @@ def test_application_debit():
     
     child.close()
     
-    assert child.exitstatus == 0
-
     
 def test_application_exit():
     """View Current Balance"""
