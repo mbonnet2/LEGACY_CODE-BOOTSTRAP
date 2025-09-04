@@ -16,7 +16,7 @@ def main():
 
         match choice:
             case "1":
-                print(f"Current balance: {accountData.read_balance()}")
+                print(f"Current balance: {accountData.read_balance():.2f}")
             case "2":
                 print(f"credit")
             case "3":
