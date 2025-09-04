@@ -1,7 +1,8 @@
 from data import AccountData
+from operation import AccountManager, OperationFactory
 
 def main():
-    accountData = AccountData(1000)
+    manager = AccountManager()
 
     while True:
         print("--------------------------------")
@@ -16,16 +17,21 @@ def main():
 
         match choice:
             case "1":
-                print(f"Current balance: {accountData.read_balance():.2f}")
+                op = OperationFactory.get_operation('BALANCE')
             case "2":
-                print(f"credit")
+                amount = float(input("Enter credit amount: "))
+                op = OperationFactory.get_operation('CREDIT', amount)
             case "3":
-                print(f"debit")
+                amount = float(input("Enter debit amount: "))
+                op = OperationFactory.get_operation('DEBIT', amount)
             case "4":
-                print(f"exit")
+                print(f"Exiting the program. Goodbye!")
                 break
             case _:
                 print(f"Invalid choice, please select 1-4.")
+                continue
+        
+        manager.perform_operation(op)
 
 if __name__ == "__main__":
     main()
