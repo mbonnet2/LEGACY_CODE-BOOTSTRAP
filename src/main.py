@@ -1,4 +1,8 @@
+from data import AccountData
+
 def main():
+    accountData = AccountData(1000)
+
     while True:
         print("--------------------------------")
         print("Account Management System")
@@ -12,7 +16,7 @@ def main():
 
         match choice:
             case "1":
-                print(f"total")
+                print(f"Current balance: {accountData.read_balance():.2f}")
             case "2":
                 print(f"credit")
             case "3":
