@@ -2,9 +2,9 @@ name: Python CI
 
 on:
   push:
-    branches: [ "main", "dev", "feature/*" ]
+    branches: ["main", "dev", "feature/*"]
   pull_request:
-    branches: [ "main", "dev" ]
+    branches: ["main", "dev"]
 
 permissions:
   contents: read
@@ -45,7 +45,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - run: |
           pip install pytest
-          PYTHONPATH=src pytest
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
           pytest tests/test_balance.py -v
 
   debit:
@@ -64,7 +64,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - run: |
           pip install pytest
-          PYTHONPATH=src pytest
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
           pytest tests/test_debit.py -v
 
   credit:
@@ -83,7 +83,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - run: |
           pip install pytest
-          PYTHONPATH=src pytest
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
           pytest tests/test_credit.py -v
 
   exit:
@@ -102,7 +102,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - run: |
           pip install pytest
-          PYTHONPATH=src pytest
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
           pytest tests/test_exit.py -v
 
   particular-case:
@@ -121,5 +121,5 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - run: |
           pip install pytest
-          PYTHONPATH=src pytest
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
           pytest tests/test_particular_case.py -v
