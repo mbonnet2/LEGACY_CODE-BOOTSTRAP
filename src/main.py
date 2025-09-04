@@ -12,7 +12,7 @@ def main():
 
         match choice:
             case "1":
-                print(f"Current balance: ")
+                print(f"total")
             case "2":
                 print(f"credit")
             case "3":
