@@ -135,38 +135,38 @@ def test_application_check_balance_add_big_money():
 def test_application_check_long_manipulation():
 
     child = pexpect.spawn("python src/main.py")
-    
+
     child.expect(PROMPT_MESSAGE, timeout=5)
 
     child.sendline(CREDIT_KEY)
 
     child.expect(CREDIT_ASK, timeout=5)
 
-    child.send("2000")
+    child.sendline("2000")
 
-    child.expect(ACCOUNT_CREDITED + "3000", timeout=5)
+    child.expect(ACCOUNT_CREDITED + "3000", timeout=1)
 
     child.expect(PROMPT_MESSAGE, timeout=5)
 
-    child.send(DEBIT_KEY)
+    child.sendline(DEBIT_KEY)
 
     child.expect(DEBIT_ASK, timeout=5)
 
-    child.send("2600")
+    child.sendline("2600")
 
     child.expect(ACCOUNT_DEBITED + "400", timeout=5)
 
     child.expect(PROMPT_MESSAGE, timeout=5)
 
-    child.send(BALANCE_KEY)
+    child.sendline(BALANCE_KEY)
 
-    child.expect(BALANCE_KEY + "400", timeout=5)
+    child.expect(CURRENT_BALANCE + "400", timeout=5)
 
     child.expect(PROMPT_MESSAGE, timeout=5)
 
-    child.send(BALANCE_KEY)
+    child.sendline(BALANCE_KEY)
 
-    child.expect(BALANCE_KEY + "400", timeout=5)
+    child.expect(CURRENT_BALANCE + "400", timeout=5)
 
     child.expect(PROMPT_MESSAGE, timeout=5)
 
