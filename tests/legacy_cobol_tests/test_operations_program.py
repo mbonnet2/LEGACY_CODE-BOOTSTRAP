@@ -58,7 +58,7 @@ class TestOperationsProgram:
         child.expect("Enter credit amount:", timeout=1)
         child.sendline("&#$!;")
         child.expect(constants.PROMPT_MESSAGE, timeout=1)
-        assert "Amount credited. New balance: 001000.00" in child.before
+        assert "Invalid amount. Balance: 001000.00" in child.before
         child.sendline("4")
         child.expect(constants.EXIT_MESSAGE, timeout=1)
 
