@@ -9,10 +9,11 @@ def test_application_credit_add():
 
     op = OperationFactory.get_operation('CREDIT', 100)
     accountManager.perform_operation(op)
-    
-    child.expect("Amount credited. New balance: 1100", timeout=20)
 
-    child.close()
+    captured = capsys.readouterr()
+
+    assert "Amount credited. New balance: 1100" in captured.out
+    
 
 def test_application_credit_negative():
 
@@ -23,9 +24,10 @@ def test_application_credit_negative():
     op = OperationFactory.get_operation('CREDIT', -100)
     accountManager.perform_operation(op)
 
-    child.expect("Invalid operation", timeout=20)
+    captured = capsys.readouterr()
 
-    child.close()
+    assert "Invalid operation" in captured.out
+
 
 def test_application_credit_nul():
     account = AccountData(1000)
@@ -35,22 +37,22 @@ def test_application_credit_nul():
     op = OperationFactory.get_operation('CREDIT', 0)
     accountManager.perform_operation(op)
 
-    child.expect("Invalid operation", timeout=20)
+    captured = capsys.readouterr()
 
-    child.close()
+    assert "Invalid operation" in captured.out
 
 def test_application_credit_full():
 
     child = pexpect.spawn("python src/main.py")
     
-    child.expect("Account Management System", timeout=20)
+    child.expect("Account Management System", timeout=5)
     
     child.sendline("2")
     
-    child.expect("Enter credit amount:", timeout=20)
+    child.expect("Enter credit amount:", timeout=5)
 
     child.sendline("100")
 
-    child.expect("Amount credited. New balance: 1100", timeout=20)
+    child.expect("Amount credited. New balance: 1100", timeout=5)
 
     child.close()
