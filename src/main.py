@@ -20,19 +20,28 @@ def main():
             case "1":
                 op = OperationFactory.get_operation('BALANCE')
             case "2":
-                amount = float(input("Enter credit amount: "))
-                op = OperationFactory.get_operation('CREDIT', amount)
+                amount = input("Enter credit amount: ")
+                try:
+                    float_amount = float(amount)
+                    op = OperationFactory.get_operation('CREDIT', float_amount)
+                    manager.perform_operation(op)
+                except:
+                    print(f"Invalid operation type")
             case "3":
-                amount = float(input("Enter debit amount: "))
-                op = OperationFactory.get_operation('DEBIT', amount)
+                amount = input("Enter debit amount: ")
+                try:
+                    float_amount = float(amount)
+                    op = OperationFactory.get_operation('DEBIT', float_amount)
+                    manager.perform_operation(op)
+                except:
+                    print(f"Invalid operation type")
             case "4":
                 print(f"Exiting the program. Goodbye!")
                 break
             case _:
                 print(f"Invalid choice, please select 1-4.")
-                continue
         
-        manager.perform_operation(op)
+        
 
 if __name__ == "__main__":
     main()
