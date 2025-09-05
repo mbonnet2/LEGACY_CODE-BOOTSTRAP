@@ -19,6 +19,7 @@ def main():
         match choice:
             case "1":
                 op = OperationFactory.get_operation('BALANCE')
+                manager.perform_operation(op)
             case "2":
                 amount = input("Enter credit amount: ")
                 try:
