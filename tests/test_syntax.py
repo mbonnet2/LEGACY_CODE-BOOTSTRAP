@@ -37,7 +37,6 @@ def test_application_selection_plus_number():
 
     child.close()
 
-#Try to withdraw with a value that is not a number
 def test_application_withdraw_money_not_a_number():
     child = pexpect.spawn("python src/main.py")
     
@@ -62,7 +61,6 @@ def test_application_withdraw_money_not_a_number():
     
     assert child.exitstatus == 0
 
-#Try to withdraw with an empty value
 def test_application_withdraw_money_empty_value():
     child = pexpect.spawn("python src/main.py")
     
@@ -87,7 +85,6 @@ def test_application_withdraw_money_empty_value():
     
     assert child.exitstatus == 0
 
-#Try to withdraw with a heading space
 def test_application_withdraw_money_heading_space():
     child = pexpect.spawn("python src/main.py")
     
@@ -112,7 +109,6 @@ def test_application_withdraw_money_heading_space():
     
     assert child.exitstatus == 0
 
-#Try to withdraw with a trailing space
 def test_application_withdraw_money_trailing_space():
     child = pexpect.spawn("python src/main.py")
     
@@ -137,7 +133,6 @@ def test_application_withdraw_money_trailing_space():
     
     assert child.exitstatus == 0
 
-#Try to credit with a value that is not a number
 def test_application_credit_money_not_a_number():
     child = pexpect.spawn("python src/main.py")
     
@@ -162,7 +157,6 @@ def test_application_credit_money_not_a_number():
     
     assert child.exitstatus == 0
 
-#Try to credit with an empty value
 def test_application_credit_money_empty_value():
     child = pexpect.spawn("python src/main.py")
     
@@ -187,7 +181,6 @@ def test_application_credit_money_empty_value():
     
     assert child.exitstatus == 0
 
-#Try to credit with a heading space
 def test_application_credit_money_heading_space():
     child = pexpect.spawn("python src/main.py")
     
@@ -212,7 +205,6 @@ def test_application_credit_money_heading_space():
     
     assert child.exitstatus == 0
 
-#Try to credit with a trailing space
 def test_application_credit_money_trailing_space():
     child = pexpect.spawn("python src/main.py")
     
