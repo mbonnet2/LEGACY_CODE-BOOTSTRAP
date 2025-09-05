@@ -43,7 +43,7 @@ def test_application_debit_full():
     
     child.expect("Account Management System", timeout=5)
     
-    child.sendline("2")
+    child.sendline("3")
     
     child.expect("Enter debit amount:", timeout=5)
 
