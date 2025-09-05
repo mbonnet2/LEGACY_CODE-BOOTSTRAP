@@ -8,7 +8,7 @@ class Operation(ABC):
 
 class BalanceOperation(Operation):
     def execute(self, account: AccountData) -> None:
-        print(f"Current balance: {account.read_balance():,.2f}")
+        print(f"Current balance: {account.read_balance():.2f}")
 
 class CreditOperation(Operation):
     def __init__(self, amount: float):
@@ -18,7 +18,7 @@ class CreditOperation(Operation):
         if self.amount > 0:
             balance = account.read_balance() + self.amount
             account.write_balance(balance)
-            print(f"Amount credited. New balance: {balance:,.2f}")
+            print(f"Amount credited. New balance: {balance:.2f}")
         else:
             print(f"Invalid operation type")
 
@@ -30,13 +30,13 @@ class DebitOperation(Operation):
         if self.amount <= account.read_balance() and self.amount > 0:
             balance = account.read_balance() - self.amount
             account.write_balance(balance)
-            print(f"Amount debited. New balance: {balance:,.2f}")
+            print(f"Amount debited. New balance: {balance:.2f}")
         else:
             print(f"Invalid operation type")
 
 class AccountManager:
-    def __init__(self):
-        self.account = AccountData(1000)
+    def __init__(self, account: AccountData):
+        self.account = account
 
     def perform_operation(self, operation: Operation) -> None:
         operation.execute(self.account)
