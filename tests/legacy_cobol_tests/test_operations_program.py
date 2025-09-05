@@ -62,6 +62,17 @@ class TestOperationsProgram:
         child.sendline("4")
         child.expect(constants.EXIT_MESSAGE, timeout=1)
 
+    def test_credit_amount_empty(self):
+        child = pexpect.spawn(constants.EXECUTABLE, encoding='utf-8')
+        child.expect(constants.PROMPT_MESSAGE, timeout=1)
+        child.sendline("2")
+        child.expect("Enter credit amount:", timeout=1)
+        child.sendline("")
+        child.expect(constants.PROMPT_MESSAGE, timeout=1)
+        assert "Invalid amount. Balance: 001000.00" in child.before
+        child.sendline("4")
+        child.expect(constants.EXIT_MESSAGE, timeout=1)
+
     def test_credit_formatted_plus_amount(self):
         child = pexpect.spawn(constants.EXECUTABLE, encoding='utf-8')
         child.expect(constants.PROMPT_MESSAGE, timeout=1)
