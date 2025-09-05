@@ -13,7 +13,7 @@ def test_application_balance():
     
     child.close()
     
-def test_application_balance_full():
+def test_application_balance_full(capsys):
     account = AccountData(1000)
     accountManager = AccountManager(account)
 

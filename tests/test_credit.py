@@ -2,10 +2,9 @@ import pexpect
 from src.data import AccountData
 from src.operation import AccountManager, OperationFactory
     
-def test_application_credit_add():
+def test_application_credit_add(capsys):
     account = AccountData(1000)
     accountManager = AccountManager(account)
-    child = pexpect.spawn("python src/main.py")
 
     op = OperationFactory.get_operation('CREDIT', 100)
     accountManager.perform_operation(op)
@@ -15,11 +14,10 @@ def test_application_credit_add():
     assert "Amount credited. New balance: 1100" in captured.out
     
 
-def test_application_credit_negative():
+def test_application_credit_negative(capsys):
 
     account = AccountData(1000)
     accountManager = AccountManager(account)
-    child = pexpect.spawn("python src/main.py")
 
     op = OperationFactory.get_operation('CREDIT', -100)
     accountManager.perform_operation(op)
@@ -29,10 +27,9 @@ def test_application_credit_negative():
     assert "Invalid operation" in captured.out
 
 
-def test_application_credit_nul():
+def test_application_credit_nul(capsys):
     account = AccountData(1000)
     accountManager = AccountManager(account)
-    child = pexpect.spawn("python src/main.py")
 
     op = OperationFactory.get_operation('CREDIT', 0)
     accountManager.perform_operation(op)
